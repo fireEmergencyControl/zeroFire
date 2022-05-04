@@ -93,7 +93,11 @@
 #### 웹사이트 탬플릿
 
 - https://startbootstrap.com/theme/sb-admin-2
-  
+
+#### 프로토타입
+
+- https://ovenapp.io/project/nsLNeZiTvuQQw22yHoQNiM0TSPsmtFaA#YDnQQ
+
 
 코틀린(안드로이드)
 네이밍 lowerCamelCase 사용 ex) goodidea (x) goodIdea 
@@ -107,4 +111,8 @@
 #### 문서 참고기록
 
 https://docs.google.com/document/d/1xxr2f3yGGx7rId-788glnKZvJHw1qTh6U0MxFwSPnmU/edit?userstoinvite=shimhotdog@gmail.com&actionButton=1#
+
+안드로이드 - https://github.com/project-travel-mate/Travel-Mate 지도 ,전체적인 틀 https://www.instructables.com/IoT-Home-Weather-Monitoring-System-With-Android-Ap/
+
+
 
