@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="500dp"
     android:orientation="vertical"
     tools:context=".Test1_Activity">
+
     <Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#10CFA9"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -28,20 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/toolbar_hg_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="3dp" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/toolbar_hg_90"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_end="3dp" />
 
                 <TextView
                     android:id="@+id/toolBarTitle"
@@ -62,8 +50,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerInside"
         tools:srcCompat="@tools:sample/avatars" />
 
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment_test1.tabLocation.LoginTab">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/shieldcolor" />
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        />
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        >
+        <EditText
+            android:id="@+id/editTextID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_box1"
+            android:padding="10dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999"
+            android:inputType="textPersonName"
+            android:hint="ID"
+            />
+        <EditText
+            android:id="@+id/editTextPW"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_box1"
+            android:padding="10dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999"
+            android:inputType="textPassword"
+            android:hint="PW"
+            />
+        <Button
+            android:id="@+id/buttonLogIn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="login"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/submitbutton"
+            />
+    </LinearLayout>
+</LinearLayout>
