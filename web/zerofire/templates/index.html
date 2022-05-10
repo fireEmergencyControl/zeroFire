@@ -21,7 +21,84 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+
 </head>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type = "text/javascript"> </script>
+<script>
+    var host = "192.168.0.5";
+    var port = 9001;
+    var matt;
+    //callback함수 - 접속이 완료된 후 호출되는 함수
+    function onConnect(){
+        console.log("접속완료");
+        mqtt.subscribe("iot/#");
+        // 웹페이지 접속하자마자 메시지 보내기
+        message = new Paho.MQTT.Message("start");
+        // topic 설정
+        message.destinationName = "iot/web";
+        // MQTT 메시지 보내기 - publish
+        mqtt.send(message);
+    }
+    function onFailure(){
+        console.log("접속실패");
+    }
+    //2. 메시지가 전송되면 호출될 콜백함수를 정의
+    function onMessageArrived(msg){
+    
+        document.getElementById("myimg").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null, msg.payloadBytes));
+    
+        let words = msg.payloadString.split(":");
+        let result = parseInt(words[1]);
+    
+        console.log( words[0] + ':' + result);
+        if(words[0]=="humidity") {
+            $ ( "#hu1" ) .jqxGauge ( 'setValue' , result);
+        }else if(words[1]=="detected"){
+            alert("수상한 움직임이 확인되었습니다");
+        }else if(words[0]=="tempeature") {
+            $ ( "#t1" ) .jqxGauge ( 'setValue' , result);
+        }else if(words[0]=="distance"){
+            $ ( "#d1" ) .jqxGauge ( 'setValue' , result);
+        }
+    }
+    //publish 하는 함수 정의
+    function sendMsg(msg){    alert(msg);
+        message = new Paho.MQTT.Message(msg);
+        message.destinationName = "iot/led";
+        mqtt.send(message);
+    }
+    
+    //mqtt통신을 관리하기 위한 사용자정의 함수
+    function MQTTConnect(){
+        console.log("접속완료" + host + "," + port);
+        // mqtt 통신을 위한 클라이언트 객체 생성
+        mqtt = new Paho.MQTT.Client(host, port, "javascript_client");
+        // "javascript_client"는 클라이언트 id
+        // mqtt 통신을 위해 필요한 설정을 명시
+        var options = {
+            timeout:3,
+            onSuccess:onConnect,
+            onFailure:onFailure,
+        }
+        // 3. 콜백함수등록
+        mqtt.onMessageArrived = onMessageArrived;
+        mqtt.connect(options);
+    }
+    function ckFunc(){
+        mychk = document.myform.led;
+        chkVal = "";//체크되어 있는 항목의 문자열을 추가할 변수
+        if(mychk.checked) {
+            chkVal = "led_on";
+        }else {
+            chkVal = "led_off";
+        }
+        sendMsg(chkVal);
+    }
+MQTTConnect();
+</script>
+
+<scirpt src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 
 <body id="page-top">
 
@@ -145,7 +222,7 @@
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+                <img class="sidebar-card-illustration mb-2" src="{% static 'img/undraw_rocket.svg' %}" alt="...">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
@@ -275,7 +352,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="{% static 'img/undraw_profile_1.svg' %}"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -287,7 +364,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="{% static 'img/undraw_profile_2.svg' %}"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -299,7 +376,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="{% static 'img/undraw_profile_3.svg' %}"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -333,7 +410,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="{% static 'img/undraw_profile.svg' %}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -372,95 +449,6 @@
                         <a href="#"><i class="fas fa-download fa-sm text-white-50"></i> Go chart</a>
                     </div>
 
-<!--                    &lt;!&ndash; Content Row &ndash;&gt;-->
-<!--                    <div class="row">-->
-
-<!--                        &lt;!&ndash; Earnings (Monthly) Card Example &ndash;&gt;-->
-<!--                        <div class="col-xl-3 col-md-6 mb-4">-->
-<!--                            <div class="card border-left-primary shadow h-100 py-2">-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="row no-gutters align-items-center">-->
-<!--                                        <div class="col mr-2">-->
-<!--                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">-->
-<!--                                                Earnings (Monthly)</div>-->
-<!--                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Earnings (Monthly) Card Example &ndash;&gt;-->
-<!--                        <div class="col-xl-3 col-md-6 mb-4">-->
-<!--                            <div class="card border-left-success shadow h-100 py-2">-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="row no-gutters align-items-center">-->
-<!--                                        <div class="col mr-2">-->
-<!--                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">-->
-<!--                                                Earnings (Annual)</div>-->
-<!--                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Earnings (Monthly) Card Example &ndash;&gt;-->
-<!--                        <div class="col-xl-3 col-md-6 mb-4">-->
-<!--                            <div class="card border-left-info shadow h-100 py-2">-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="row no-gutters align-items-center">-->
-<!--                                        <div class="col mr-2">-->
-<!--                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks-->
-<!--                                            </div>-->
-<!--                                            <div class="row no-gutters align-items-center">-->
-<!--                                                <div class="col-auto">-->
-<!--                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>-->
-<!--                                                </div>-->
-<!--                                                <div class="col">-->
-<!--                                                    <div class="progress progress-sm mr-2">-->
-<!--                                                        <div class="progress-bar bg-info" role="progressbar"-->
-<!--                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"-->
-<!--                                                            aria-valuemax="100"></div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Pending Requests Card Example &ndash;&gt;-->
-<!--                        <div class="col-xl-3 col-md-6 mb-4">-->
-<!--                            <div class="card border-left-warning shadow h-100 py-2">-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="row no-gutters align-items-center">-->
-<!--                                        <div class="col mr-2">-->
-<!--                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">-->
-<!--                                                Pending Requests</div>-->
-<!--                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-auto">-->
-<!--                                            <i class="fas fa-comments fa-2x text-gray-300"></i>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-                    <!-- Content Row -->
-
                     <div class="row">
 
                         <!-- Area Chart -->
@@ -488,7 +476,7 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <img src="{% static 'img/cctv.jpg' %}" alt="..." width="100%" height="100%">
+                                        <img id="myimg" src="#" alt="..." width="100%" height="100%">
                                     </div>
                                 </div>
                             </div>
@@ -567,18 +555,6 @@
                                         <div class="progress-bar" role="progressbar" style="width: 60%"
                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-<!--                                    <h4 class="small font-weight-bold">Payout Details <span-->
-<!--                                            class="float-right">80%</span></h4>-->
-<!--                                    <div class="progress mb-4">-->
-<!--                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"-->
-<!--                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>-->
-<!--                                    </div>-->
-<!--                                    <h4 class="small font-weight-bold">Account Setup <span-->
-<!--                                            class="float-right">Complete!</span></h4>-->
-<!--                                    <div class="progress">-->
-<!--                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"-->
-<!--                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>-->
-<!--                                    </div>-->
                                 </div>
                             </div>
 
@@ -592,22 +568,6 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                <div class="col-lg-6 mb-4">-->
-<!--                                    <div class="card bg-success text-white shadow">-->
-<!--                                        <div class="card-body">-->
-<!--                                            Success-->
-<!--                                            <div class="text-white-50 small">#1cc88a</div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="col-lg-6 mb-4">-->
-<!--                                    <div class="card bg-info text-white shadow">-->
-<!--                                        <div class="card-body">-->
-<!--                                            Info-->
-<!--                                            <div class="text-white-50 small">#36b9cc</div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
                                 <div class="col-lg-6 mb-4">
                                     <div class="card bg-warning text-white shadow">
                                         <div class="card-body">
@@ -624,30 +584,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Becareful
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
 
                         </div>
@@ -661,16 +598,6 @@
                                 </div>
                                 <div class="card-body">
                                     <img src="{% static 'img/map.PNG' %}" alt="..." width="100%">
-<!--                                    <div class="text-center">-->
-<!--                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"-->
-<!--                                            src="img/undraw_posting_photo.svg" alt="...">-->
-<!--                                    </div>-->
-<!--                                    <p>Add some quality, svg illustrations to your project courtesy of <a-->
-<!--                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a-->
-<!--                                        constantly updated collection of beautiful svg images that you can use-->
-<!--                                        completely free and without attribution!</p>-->
-<!--                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on-->
-<!--                                        unDraw &rarr;</a>-->
                                 </div>
                             </div>
 
