@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="LightSkyBlue">#87CEFA</color>
+    <color name="input_Box1">#D8D8D8</color>
+    <color name="input_Box_hint">#999999</color>
+    <color name="CadetBlue">#5F9EA0</color>
+    <color name="MediumSlateBlue">#7B68EE</color>
+    <color name="chartreuse">#7FFF00</color>
+    <color name="LimeGreen">#32CD32</color>
+    <color name="Green">#008000</color>
 </resources>
