@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment_test1.tabLocation.ControlTab">
+    tools:context=".zerofiretab.tabLocation.ControlTab">
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -32,52 +32,45 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+
             <Button
                 android:id="@+id/LeftForward"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="35dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/controllerbutton"
-                />
+                android:background="@drawable/top_left" />
             <Button
                 android:id="@+id/LeftBackward"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/controllerbutton"
+                android:background="@drawable/down_left_arrow"
                 />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             >
             <Button
                 android:id="@+id/Forward"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/controllerbutton"
+                android:background="@drawable/arrow_up"
                 />
             <Button
                 android:id="@+id/Stop"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/controllerbutton"
+                android:background="@drawable/minimize"
                 />
             <Button
                 android:id="@+id/Backward"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/controllerbutton"
+                android:background="@drawable/arrow_down"
                 />
 
         </LinearLayout>
@@ -91,16 +84,14 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="35dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/controllerbutton"
+                android:background="@drawable/top_right"
                 />
             <Button
                 android:id="@+id/RightBackward"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/controllerbutton"
+                android:background="@drawable/down_right_arrow"
                 />
         </LinearLayout>
         <Space
@@ -114,28 +105,24 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/controllerbutton"
                 />
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/controllerbutton"
                 />
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/controllerbutton"
                 />
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/controllerbutton"
                 />
         </LinearLayout>

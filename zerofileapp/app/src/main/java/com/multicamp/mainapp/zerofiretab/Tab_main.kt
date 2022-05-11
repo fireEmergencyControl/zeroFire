@@ -1,14 +1,12 @@
-package com.multicamp.mainapp.fragment_test1
+package com.multicamp.mainapp.zerofiretab
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.PagerAdapter
 import com.google.android.material.tabs.TabLayout
+import com.multicamp.mainapp.MainActivity
 import com.multicamp.mainapp.R
-import com.multicamp.mainapp.fragment_test1.tabLocation.*
+import com.multicamp.mainapp.zerofiretab.tabLocation.*
 import kotlinx.android.synthetic.main.tab_main.*
 
 class Tab_main : AppCompatActivity() {
@@ -22,7 +20,7 @@ class Tab_main : AppCompatActivity() {
         getSupportActionBar()?.hide();
         setContentView(R.layout.tab_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.linear1,view1).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.layout1,view1).commit()
 
         tabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -35,7 +33,7 @@ class Tab_main : AppCompatActivity() {
                     3-> fragment=view4
                     4-> fragment=view5
                 }
-                supportFragmentManager.beginTransaction().replace(R.id.linear1,fragment!!).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.layout1,fragment!!).commit()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {

@@ -1,6 +1,5 @@
-package com.multicamp.mainapp.fragment_test1.tabLocation
+package com.multicamp.mainapp.zerofiretab.tabLocation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,4 +16,6 @@ class RegisterTab : Fragment() {
         val view=inflater.inflate(R.layout.activity_register_tab,container,false)
         return view
     }
+
+
 }
