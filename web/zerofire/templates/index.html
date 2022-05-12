@@ -21,85 +21,13 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+    <!-- cdn  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type = "text/javascript"> </script>
+    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxd96122c92d4b42678d8fe2206b8358ad"></script>
 
 </head>
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type = "text/javascript"> </script>
-<script>
-    var host = "192.168.0.5";
-    var port = 9001;
-    var matt;
-    //callback함수 - 접속이 완료된 후 호출되는 함수
-    function onConnect(){
-        console.log("접속완료");
-        mqtt.subscribe("iot/#");
-        // 웹페이지 접속하자마자 메시지 보내기
-        message = new Paho.MQTT.Message("start");
-        // topic 설정
-        message.destinationName = "iot/web";
-        // MQTT 메시지 보내기 - publish
-        mqtt.send(message);
-    }
-    function onFailure(){
-        console.log("접속실패");
-    }
-    //2. 메시지가 전송되면 호출될 콜백함수를 정의
-    function onMessageArrived(msg){
-    
-        document.getElementById("myimg").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null, msg.payloadBytes));
-    
-        let words = msg.payloadString.split(":");
-        let result = parseInt(words[1]);
-    
-        console.log( words[0] + ':' + result);
-        if(words[0]=="humidity") {
-            $ ( "#hu1" ) .jqxGauge ( 'setValue' , result);
-        }else if(words[1]=="detected"){
-            alert("수상한 움직임이 확인되었습니다");
-        }else if(words[0]=="tempeature") {
-            $ ( "#t1" ) .jqxGauge ( 'setValue' , result);
-        }else if(words[0]=="distance"){
-            $ ( "#d1" ) .jqxGauge ( 'setValue' , result);
-        }
-    }
-    //publish 하는 함수 정의
-    function sendMsg(msg){    alert(msg);
-        message = new Paho.MQTT.Message(msg);
-        message.destinationName = "iot/led";
-        mqtt.send(message);
-    }
-    
-    //mqtt통신을 관리하기 위한 사용자정의 함수
-    function MQTTConnect(){
-        console.log("접속완료" + host + "," + port);
-        // mqtt 통신을 위한 클라이언트 객체 생성
-        mqtt = new Paho.MQTT.Client(host, port, "javascript_client");
-        // "javascript_client"는 클라이언트 id
-        // mqtt 통신을 위해 필요한 설정을 명시
-        var options = {
-            timeout:3,
-            onSuccess:onConnect,
-            onFailure:onFailure,
-        }
-        // 3. 콜백함수등록
-        mqtt.onMessageArrived = onMessageArrived;
-        mqtt.connect(options);
-    }
-    function ckFunc(){
-        mychk = document.myform.led;
-        chkVal = "";//체크되어 있는 항목의 문자열을 추가할 변수
-        if(mychk.checked) {
-            chkVal = "led_on";
-        }else {
-            chkVal = "led_off";
-        }
-        sendMsg(chkVal);
-    }
-MQTTConnect();
-</script>
-
-<scirpt src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -402,7 +330,6 @@ MQTTConnect();
                             </div>
                         </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -530,63 +457,63 @@ MQTTConnect();
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
+<!--                            <div>-->
+<!--                                <canvas id="myChart"></canvas>-->
+<!--                            </div>-->
 
-                            <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">현황</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">온도</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">온도 <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div >
+                                        <canvas id="myChart"></canvas>
                                     </div>
-                                    <h4 class="small font-weight-bold">습도 <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">이산화 탄소 농도 <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
+<!--                                    <h4 class="small font-weight-bold">온도 <span-->
+<!--                                            class="float-right">20%</span></h4>-->
+<!--                                    <div class="progress mb-4">-->
+<!--                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"-->
+<!--                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                    </div>-->
+<!--                                    <h4 class="small font-weight-bold">습도 <span-->
+<!--                                            class="float-right">40%</span></h4>-->
+<!--                                    <div class="progress mb-4">-->
+<!--                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"-->
+<!--                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                    </div>-->
+<!--                                    <h4 class="small font-weight-bold">이산화 탄소 농도 <span-->
+<!--                                            class="float-right">60%</span></h4>-->
+<!--                                    <div class="progress mb-4">-->
+<!--                                        <div class="progress-bar" role="progressbar" style="width: 60%"-->
+<!--                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                    </div>-->
                             </div>
+                        </div>
 
                             <!-- Color System -->
                             <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Safe
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
+<!--                            <div>-->
+<!--                                <canvas id="myChart"></canvas>-->
+<!--                            </div>-->
+<!--                                    <h4 class="small font-weight-bold">온도 <span-->
+<!--                                            class="float-right">20%</span></h4>-->
+<!--                                    <div class="progress mb-4">-->
+<!--                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"-->
+<!--                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                    </div>-->
+<!--                                    <h4 class="small font-weight-bold">습도 <span-->
+<!--                                            class="float-right">40%</span></h4>-->
+<!--                                    <div class="progress mb-4">-->
+<!--                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"-->
+<!--                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                    </div>-->
+<!--                                    <h4 class="small font-weight-bold">이산화 탄소 농도 <span-->
+<!--                                            class="float-right">60%</span></h4>-->
+<!--                                    <div class="progress mb-4">-->
+<!--                                        <div class="progress-bar" role="progressbar" style="width: 60%"-->
+<!--                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                    </div>-->
                                     </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
                         </div>
 
                         <div class="col-lg-6 mb-4">
@@ -665,10 +592,11 @@ MQTTConnect();
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/line_chart.js' %}"></script>
+    <script src="{% static 'js/tmap.js' %}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
