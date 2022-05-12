@@ -365,13 +365,28 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+// The type of chart we want to create
+    type: 'bar',
+    // The data for our dataset
+    data: { labels: ['온도', '습도'],
+    datasets: [{
+        label: '온도와 습도',
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',],
+         borderColor: [
+            'rgb(255, 99, 132,1.5)',
+            'rgba(54, 162, 235, 1.5)',],
+         data: [20, 30]
+         }]
+     },
+     // Configuration options go here
+     options: {}
+    });
+</script>
 </body>
 
 </html>

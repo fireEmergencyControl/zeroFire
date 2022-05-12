@@ -72,7 +72,7 @@ var matt;
 //callback함수 - 접속이 완료된 후 호출되는 함수
 function onConnect(){
     console.log("접속완료");
-    mqtt.subscribe("iot/#");
+    mqtt.subscribe("senser/#");
     // 웹페이지 접속하자마자 메시지 보내기
     message = new Paho.MQTT.Message("start");
     // topic 설정
@@ -85,11 +85,8 @@ function onFailure(){
 }
 //2. 메시지가 전송되면 호출될 콜백함수를 정의
 function onMessageArrived(msg){
-    var tempHum = [];
-    var temp = 0;
-    var hum = 0;
 
-//        document.getElementById("myimg").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null, msg.payloadBytes));
+    document.getElementById("myimg").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null, msg.payloadBytes));
     let words = msg.payloadString.split(":");
     if(words=="fire") {
         var audio = new Audio();
@@ -107,53 +104,15 @@ function onMessageArrived(msg){
         console.log("오디오 실행");
         alert("화재가 발생했습니다.");
     }
+    let tempHum = []
     let result = parseInt(words[1]);
-    let result2 = parseInt(words[1])
     if(words[0]=="tempeature") {
         tempHum[0] = result;
-    }else if(words[0]=="humidity") {
+    }
+    if(words[0]=="humidity") {
         tempHum[1] = result;
     }
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-// The type of chart we want to create
-    type: 'bar',
-    // The data for our dataset
-    data: { labels: ['온도', '습도'],
-    datasets: [{
-        label: '온도와 습도',
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',],
-         borderColor: [
-            'rgb(255, 99, 132,1.5)',
-            'rgba(54, 162, 235, 1.5)',],
-         data: 20, 50
-         }]
-     },
-     // Configuration options go here
-     options: {
-        scales: {
-            xAxes: [{
-                ticks: {
-                    fontColor: 'rgba(27, 163, 156, 1)',
-                    fontSize: '15'
-                    }
-                }],
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    min: 0,
-                    max: 100,
-                    stepSzie: 10,
-                    fontColor: 'rgba(246, 36, 89, 1)',
-                     fontSize: '15' }
-                 }]
-             }
-        }
-    });
-
- console.log( words[0] + ':' + result);
+console.log( words[0] + ':' + result);
 }
 //publish 하는 함수 정의
 function sendMsg(msg){    alert(msg);
