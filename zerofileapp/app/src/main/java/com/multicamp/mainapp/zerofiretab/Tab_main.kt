@@ -10,11 +10,12 @@ import com.multicamp.mainapp.zerofiretab.tabLocation.*
 import kotlinx.android.synthetic.main.tab_main.*
 
 class Tab_main : AppCompatActivity() {
-    var view1=LoginTab()
-    var view2=RegisterTab()
-    var view3=ControlTab()
-    var view4=CurrentTab()
-    var view5=MapTab()
+    var view0=LoginTab()
+    var view1=RegisterTab()
+    var view2=ControlTab()
+    var view3=CurrentTab()
+    var view4=MapTab()
+    var view5=MainActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide();
@@ -27,11 +28,12 @@ class Tab_main : AppCompatActivity() {
                 val position=tab?.position
                 var fragment: Fragment?=null
                 when(position){
-                    0-> fragment=view1
-                    1-> fragment=view2
-                    2-> fragment=view3
-                    3-> fragment=view4
-                    4-> fragment=view5
+                    0-> fragment=view0
+                    1-> fragment=view1
+                    2-> fragment=view2
+                    3-> fragment=view3
+                    4-> fragment=view4
+                    5-> fragment=view5
                 }
                 supportFragmentManager.beginTransaction().replace(R.id.layout1,fragment!!).commit()
             }
