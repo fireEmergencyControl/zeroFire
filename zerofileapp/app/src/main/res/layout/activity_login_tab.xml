@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment_test1.tabLocation.LoginTab">
+    tools:context=".zerofiretab.tabLocation.LoginTab">
 
     <Space
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
         android:paddingRight="40dp"
         >
         <EditText
-            android:id="@+id/editTextID"
+            android:id="@+id/loginID"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -53,7 +53,7 @@
             android:hint="ID"
             />
         <EditText
-            android:id="@+id/editTextPW"
+            android:id="@+id/loginPW"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -65,7 +65,7 @@
             android:hint="PW"
             />
         <Button
-            android:id="@+id/buttonLogIn"
+            android:id="@+id/loginSubmit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="login"
