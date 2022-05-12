@@ -21,7 +21,7 @@ class Tab_main : AppCompatActivity() {
         getSupportActionBar()?.hide();
         setContentView(R.layout.tab_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.layout1,view1).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.layout1,view0).commit()
 
         tabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
