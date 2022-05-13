@@ -9,7 +9,7 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="40dp"
         />
 
     <ImageView
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:textSize="50dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         />
     <Space
@@ -39,30 +39,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         >
-        <EditText
-            android:id="@+id/registerID"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_box1"
-            android:hint="ID"
-            android:inputType="textCapWords"
-            android:textColor="#222222"
-            android:textColorHint="#999999"
-            />
-        <EditText
-            android:id="@+id/registerPW"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_box1"
-            android:hint="PASSWORD"
-            android:inputType="textCapWords"
-            android:padding="10dp"
-            android:textColor="#222222"
-            android:textColorHint="#999999"
-            />
+
         <EditText
             android:id="@+id/registerNAME"
             android:layout_width="fill_parent"
@@ -73,8 +50,97 @@
             android:inputType="textCapWords"
             android:padding="10dp"
             android:textColor="#222222"
-            android:textColorHint="#999999"
-            />
+            android:textColorHint="#999999" />
+
+        <EditText
+            android:id="@+id/registerID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_box1"
+            android:hint="ID"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999" />
+
+        <EditText
+            android:id="@+id/registerEMAIL"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_box1"
+            android:hint="EMAIL"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:textColor="#222222"
+            android:textColorHint="#999999" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/workarea"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:background="@drawable/input_box1"
+                android:entries="@array/workarea"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp" />
+
+            <Spinner
+                android:id="@+id/registerClasses"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:background="@drawable/input_box1"
+                android:entries="@array/classes"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/registerPW"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_box1"
+                android:hint="PASSWORD"
+                android:layout_gravity="left"
+                android:inputType="textCapWords"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="#222222"
+                android:textColorHint="#999999" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp" />
+
+            <EditText
+                android:id="@+id/registerPWcheck"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_box1"
+                android:hint="PWcheck"
+                android:layout_gravity="right"
+                android:inputType="textCapWords"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="#222222"
+                android:textColorHint="#999999" />
+        </LinearLayout>
+
+
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="fill_parent"
