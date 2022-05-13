@@ -18,6 +18,12 @@ class MyView(View):
     def login(self, request):
         return render(request, 'login.html')
 
+    @request_mapping("/logout", method="get")
+    def logout(self, request):
+        if request.session['sessionid'] != None:
+            del request.session['sessionid'];
+        return redirect('/')
+
     @request_mapping("/tables", method="get")
     def tables(self, request):
         return render(request, 'tables.html')
@@ -59,3 +65,41 @@ class MyView(View):
                 pass
         except:
             return render(request, 'loginfail.html')
+
+    @request_mapping("/info", method="get")
+    def info(self, request):
+        try:
+            obj = Manager.objects.get(id = request.session["sessionid"])
+            context = {'obj':obj};
+            return render(request, 'info.html',context)
+        except:
+            return render(request, 'accessfail.html')
+
+    @request_mapping("/change", method="get")
+    def change(self, request):
+        try:
+            obj = Manager.objects.get(id=request.session["sessionid"])
+            context = {'obj':obj}
+            return render(request, 'change.html', context)
+        except:
+            return render(request, 'accessfail.html')
+
+    @request_mapping("/changeimpl", method="post")
+    def changeimpl(self, request):
+        name = request.POST["name"]
+        id = request.POST["id"]
+        mail = request.POST["mail"]
+        workarea = request.POST["workarea"]
+        zfClass = request.POST["class"]
+        zfPass = request.POST["pass"]
+        zfPassChk = request.POST["passCheck"]
+
+        try:
+            Manager.objects.get(id=request.session["sessionid"])
+            if zfPass == zfPassChk:
+                Manager(id=id, name=name, email=mail,workarea=workarea, rno=zfClass, pass_field=zfPass).save()
+                return redirect('/')
+            else:
+                return render(request, 'registerfail.html')
+        except:
+            return render(request, 'accessfail.html')
