@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        table {
+        margin-left:auto;
+        margin-right:auto;
+        }
+    </style>
+</head>
+<script>
+</script>
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <img src= "{%static 'img/FireFightAgent.jpg'%}" width="720" height="600"/>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Change Information</h1>
+                            </div>
+                            <form class="user" id="registerForm" action="/changeimpl" method="post" data-sb-form-api-token="API_TOKEN">
+                                {% csrf_token %}
+                                <div class="form-group">
+<!--                                    <div class="col-sm-6 mb-3 mb-sm-0">-->
+                                        <input type="text" class="form-control form-control-user" id="exampleName" name="name" minlength=3 required
+                                               placeholder="Name"></div>
+                                <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" id="exampleId" name="id" minlength=3 required
+                                            value="ID {{obj.id}}" readonly>
+<!--                                    </div>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <input type="text" class="form-control form-control-user" id="exampleLastName"-->
+<!--                                            placeholder="Last Name">-->
+<!--                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="mail" minlength=3 required
+                                        placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <select class="dropdown-header" id="workarea" name="workarea" required>
+                                                    <option value="" selected>근무지</option>
+                                                    <option value="사하 소방서">사하 소방서</option>
+                                                    <option value="부천 소방서">부천 소방서</option>
+                                                    <option value="세종 소방서">세종 소방서</option>
+                                                    <option value="시흥 소방서">시흥 소방서</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="dropdown-header" id="class" name="class" required>
+                                                    <option value="" selected>계급</option>
+                                                    <option value=1>소방사시보</option>
+                                                    <option value=2>소방사</option>
+                                                    <option value=3>소방교</option>
+                                                    <option value=4>소방장</option>
+                                                    <option value=5>소방위</option>
+                                                    <option value=6>소방경</option>
+                                                    <option value=7>소방령</option>
+                                                    <option value=8>소방정</option>
+                                                    <option value=9>소방준감</option>
+                                                    <option value=10>소방감</option>
+                                                    <option value=11>소장정감</option>
+                                                    <option value=12>소방총감</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" name="pass" minlength=3 required
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" name="passCheck" minlength=3 required
+                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                    </div>
+                                </div>
+                                <input class="btn btn-primary btn-user btn-block" id = "submit" type="submit" value="Update" style="font-weight : bold ;">
+
+
+<!--                                <hr>-->
+<!--                                <a href="index.html" class="btn btn-google btn-user btn-block">-->
+<!--                                    <i class="fab fa-google fa-fw"></i> Register with Google-->
+<!--                                </a>-->
+<!--                                <a href="index.html" class="btn btn-facebook btn-user btn-block">-->
+<!--                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook-->
+<!--                                </a>-->
+<!--                            </form>-->
+<!--                            <hr>-->
+<!--                            <div class="text-center">-->
+<!--                                <a class="small" href="forgot-password.html">Find Password</a>-->
+<!--                            </div>-->
+<!--                            <div class="text-center">-->
+<!--                                <a class="small" href="/login">Log In</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
