@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.multicamp.mainapp"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -47,6 +47,7 @@ dependencies {
 
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 }
 task wrapper(type: Wrapper) {
     gradleVersion = '7.0'

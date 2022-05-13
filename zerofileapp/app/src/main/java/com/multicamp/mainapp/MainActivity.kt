@@ -72,4 +72,16 @@ class MainActivity : Fragment() {
         })
         return view
     }
+    dummy1
+        val msgdata = msg.split(":")
+        if (msgdata[0]=="humidity"){
+            showdata.append("습도:"+msgdata[1]+"\n")
+        }else if(msgdata[0]=="temperature"){
+            showdata.append("온도:"+msgdata[1]+"\n")
+        }else if(msgdata[0]=="distance"){
+            showdata2.append("거리:"+msgdata[1]+"\n")
+        }else {
+//            showdata.append(msg+"\n")
+        }
+        Log.d("mymqtt",msg)
 }*/

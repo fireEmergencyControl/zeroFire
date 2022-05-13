@@ -87,17 +87,6 @@ class ControlTab : Fragment(), View.OnClickListener {
         //EditText에 내용을 출력하기, 영상출력, .... 도착된 메시지안에서 온도랑 습도 데이터를 이용해서 차트그리기,
         // 모션 detact가 전달되면 Notification도 발생시키기.....
         val msg = String(message.payload)
-        val msgdata = msg.split(":")
-        if (msgdata[0]=="humidity"){
-            showdata.append("습도:"+msgdata[1]+"\n")
-        }else if(msgdata[0]=="temperature"){
-            showdata.append("온도:"+msgdata[1]+"\n")
-        }else if(msgdata[0]=="distance"){
-            showdata2.append("거리:"+msgdata[1]+"\n")
-        }else {
-//            showdata.append(msg+"\n")
-        }
-        Log.d("mymqtt",msg)
     }
 
     override fun onClick(v: View?) {

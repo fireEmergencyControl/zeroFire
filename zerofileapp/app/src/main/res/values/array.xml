@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="workarea">
+        <item>근무처</item>
+        <item>사하 소방서</item>
+        <item>부천 소방서</item>
+        <item>세종 소방서</item>
+        <item>시흥 소방서</item>
+    </string-array>
+    <string-array name="classes">
+        <item>계급</item>
+        <item>소방사시보</item>
+        <item>소방사</item>
+        <item>소방교</item>
+        <item>소방장</item>
+        <item>소방장</item>
+        <item>소방위</item>
+        <item>소방경</item>
+        <item>소방령</item>
+        <item>소방정</item>
+        <item>소방준감</item>
+        <item>소방감</item>
+        <item>소방정감</item>
+        <item>소방총감</item>
+    </string-array>
+</resources>
