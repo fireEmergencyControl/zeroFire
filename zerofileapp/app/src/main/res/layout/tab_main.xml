@@ -33,11 +33,6 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="회원가입" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:text="조종" />
 
             <com.google.android.material.tabs.TabItem

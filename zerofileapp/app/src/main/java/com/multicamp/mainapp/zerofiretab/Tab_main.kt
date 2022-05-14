@@ -11,11 +11,10 @@ import kotlinx.android.synthetic.main.tab_main.*
 
 class Tab_main : AppCompatActivity() {
     var view0=LoginTab()
-    var view1=RegisterTab()
-    var view2=ControlTab()
-    var view3=CurrentTab()
-    var view4=MapTab()
-    var view5=MainActivity()
+    var view1=ControlTab()
+    var view2=CurrentTab()
+    var view3=MapTab()
+    var view4=MainActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide();
@@ -33,7 +32,6 @@ class Tab_main : AppCompatActivity() {
                     2-> fragment=view2
                     3-> fragment=view3
                     4-> fragment=view4
-                    5-> fragment=view5
                 }
                 supportFragmentManager.beginTransaction().replace(R.id.layout1,fragment!!).commit()
             }
