@@ -11,6 +11,8 @@ import com.multicamp.mainapp.zerofiretab.tabLocation.controldata.MyMqtt
 import com.multicamp.mainapp.R
 import kotlinx.android.synthetic.main.activity_control_tab.*
 import org.eclipse.paho.client.mqttv3.MqttMessage
+import android.webkit.WebSettings
+import android.webkit.WebView
 
 class ControlTab : Fragment(), View.OnClickListener {
     val sub_topic = "iot/#"
@@ -19,6 +21,8 @@ class ControlTab : Fragment(), View.OnClickListener {
     val distance_topic = "iot:HC_SR04"
     val server_uri ="tcp://192.168.0.2:1883" //broker의 ip와 port
     var mymqtt : MyMqtt? = null
+    var mwebview:WebView=(수정필요합니다)
+    var mwebset:WebSettings
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +30,11 @@ class ControlTab : Fragment(), View.OnClickListener {
     ): View? {
         Log.d("test","onCreateView!!!!!!!!!!!!!!!!!!!!!!!!!")
         val view=inflater.inflate(R.layout.activity_control_tab,container,false)
+        mwebview=view.findViewById(R.id.cctvweb)
+        mwebset=mwebview.settings
+        mwebset.javaScriptEnabled
+        mwebset.useWideViewPort
+        mwebview.loadUrl("http://192.168.0.3/?action=stream")
         return view
     }
 
@@ -87,7 +96,8 @@ class ControlTab : Fragment(), View.OnClickListener {
         //EditText에 내용을 출력하기, 영상출력, .... 도착된 메시지안에서 온도랑 습도 데이터를 이용해서 차트그리기,
         // 모션 detact가 전달되면 Notification도 발생시키기.....
         val msg = String(message.payload)
-    }
+        }
+
 
     override fun onClick(v: View?) {
         var data:String=""
