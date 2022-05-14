@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_control_tab.*
 import org.eclipse.paho.client.mqttv3.MqttMessage
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.webkit.WebViewClient
 
 class ControlTab : Fragment(), View.OnClickListener {
     val sub_topic = "iot/#"
@@ -21,8 +22,8 @@ class ControlTab : Fragment(), View.OnClickListener {
     val distance_topic = "iot:HC_SR04"
     val server_uri ="tcp://192.168.0.2:1883" //broker의 ip와 port
     var mymqtt : MyMqtt? = null
-    var mwebview:WebView=(수정필요합니다)
-    var mwebset:WebSettings
+    var mwebview:WebView?=null
+    var mwebset:WebSettings?=null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,11 +31,13 @@ class ControlTab : Fragment(), View.OnClickListener {
     ): View? {
         Log.d("test","onCreateView!!!!!!!!!!!!!!!!!!!!!!!!!")
         val view=inflater.inflate(R.layout.activity_control_tab,container,false)
+
         mwebview=view.findViewById(R.id.cctvweb)
-        mwebset=mwebview.settings
-        mwebset.javaScriptEnabled
-        mwebset.useWideViewPort
-        mwebview.loadUrl("http://192.168.0.3/?action=stream")
+
+        mwebview?.setWebViewClient(WebViewClient())
+
+        mwebset?.useWideViewPort
+        mwebview!!.loadUrl("http://192.168.0.3/?action=stream")
         return view
     }
 

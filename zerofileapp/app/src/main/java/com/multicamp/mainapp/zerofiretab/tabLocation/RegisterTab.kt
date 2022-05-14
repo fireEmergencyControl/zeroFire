@@ -10,7 +10,7 @@ import com.multicamp.mainapp.zerofiretab.tabLocation.controldata.MyMqtt
 import kotlinx.android.synthetic.main.activity_register_tab.*
 
 
-class RegisterTab : Fragment(), View.OnClickListener {
+/*class RegisterTab : Fragment(), View.OnClickListener {
     val sub_topic = "iot/#"
     val _topic = "iot:"
     val server_uri ="tcp://192.168.0.2:1883" //broker의 ip와 port
@@ -34,7 +34,7 @@ class RegisterTab : Fragment(), View.OnClickListener {
         val PLACE=workarea
         val CLASSES=registerClasses
         val PW=registerPW
-        val PWC=registerPWcheck
+        val PWC=registerPWcheck*/
 /*
         if(v?.id==R.id.buttonRegister){
             fun data: Array<String> {
@@ -48,6 +48,6 @@ class RegisterTab : Fragment(), View.OnClickListener {
             }
 
             mymqtt?.publish("iot/register", data)
-        }*/
+        }
     }
-}
+}*/
