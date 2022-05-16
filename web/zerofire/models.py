@@ -20,3 +20,26 @@ class Rankdata(models.Model):
 
     class Meta:
         db_table = 'rankdata'
+
+
+class Board(models.Model):
+    bno = models.AutoField(primary_key=True)
+    mno = models.ForeignKey('Manager', models.DO_NOTHING, db_column='mno', blank=True, null=True)
+    fire_count = models.IntegerField(blank=True, null=True)
+    pump = models.CharField(max_length=1, blank=True, null=True)
+    content = models.CharField(max_length=500, blank=True, null=True)
+    etc = models.CharField(max_length=500, blank=True, null=True)
+    date_time = models.DateTimeField(blank=True, null=True)
+    regdate = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'board'
+
+class Reply(models.Model):
+    rno = models.AutoField(primary_key=True)
+    cno = models.ForeignKey(Board, models.DO_NOTHING, db_column='cno', blank=True, null=True)
+    content = models.CharField(max_length=50, blank=True, null=True)
+    reg_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'reply'
