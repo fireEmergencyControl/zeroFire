@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <title>SB Admin 2 - Register</title>
+    <title>SB Admin 2 - ChangeInfo</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,6 +28,10 @@
     </style>
 </head>
 <script>
+    $(document).ready(function(){
+        $("#class").val("{{obj.rno.rno}}").prop("selected", true);
+    })
+
 </script>
 <body class="bg-gradient-primary">
 
@@ -52,7 +57,7 @@
                                                placeholder="Name"></div>
                                 <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="exampleId" name="id" minlength=3 required
-                                            value="ID {{obj.id}}" readonly>
+                                            value="{{obj.id}}" readonly>
 <!--                                    </div>-->
 <!--                                    <div class="col-sm-6">-->
 <!--                                        <input type="text" class="form-control form-control-user" id="exampleLastName"-->
@@ -77,8 +82,8 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select class="dropdown-header" id="class" name="class" required>
-                                                    <option value="" selected>계급</option>
+                                                <select class="dropdown-header" id="class" name="class" required disabled>
+                                                    <option value="">계급</option>
                                                     <option value=1>소방사시보</option>
                                                     <option value=2>소방사</option>
                                                     <option value=3>소방교</option>
