@@ -1,5 +1,6 @@
 package com.multicamp.mainapp.zerofiretab.tabLocation
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.MediaController
+import android.widget.VideoView
 
 class ControlTab : Fragment(), View.OnClickListener {
     val sub_topic = "iot/#"
@@ -23,7 +26,7 @@ class ControlTab : Fragment(), View.OnClickListener {
     val server_uri ="tcp://192.168.0.2:1883" //broker의 ip와 port
     var mymqtt : MyMqtt? = null
     var mwebview:WebView?=null
-    var mwebset:WebSettings?=null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,14 +36,24 @@ class ControlTab : Fragment(), View.OnClickListener {
         val view=inflater.inflate(R.layout.activity_control_tab,container,false)
 
         mwebview=view.findViewById(R.id.cctvweb)
-
         mwebview?.setWebViewClient(WebViewClient())
-
-        mwebset?.useWideViewPort
-        mwebview!!.loadUrl("http://192.168.0.3/?action=stream")
+        mwebview?.setBackgroundColor(255)
+        mwebview?.settings?.loadWithOverviewMode=true
+        mwebview?.settings?.useWideViewPort=true
+        mwebview?.settings?.builtInZoomControls=true
+        mwebview?.settings?.javaScriptEnabled=true
+        mwebview?.settings?.javaScriptCanOpenWindowsAutomatically=false
+        mwebview?.settings?.allowFileAccess=true
+        mwebview!!.settings.cacheMode=WebSettings.LOAD_NO_CACHE
+        mwebview?.settings?.domStorageEnabled=true
+        mwebview?.settings?.allowContentAccess=true
+        mwebview!!.loadUrl("http://192.168.0.2:8000/mqttvideo/")
+//        mwebview!!.loadData("<html><head><style type='text/css'>body{margin:auto auto;text-align:center;}"+
+//                "img{width:100%;} div{overflow: hidden;}"+
+//                "</style></head><body><div><img src='http://192.168.0.2:8080/mqttvideo/'></div></body></html>",
+//                "text/html",  "UTF-8");
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
@@ -60,6 +73,8 @@ class ControlTab : Fragment(), View.OnClickListener {
         LeftBackward.setOnClickListener(this)
         RightForward.setOnClickListener(this)
         RightBackward.setOnClickListener(this)
+        watermotor_on.setOnClickListener(this)
+        watermotor_off.setOnClickListener(this)
 
         var listener = object: SeekBar.OnSeekBarChangeListener{
             // seekbar의 값이 변경되었을때
@@ -124,6 +139,12 @@ class ControlTab : Fragment(), View.OnClickListener {
             mymqtt?.publish("iot/servo",data)
         }else if(v?.id== R.id.RightBackward){
             data = "rightbackward"
+            mymqtt?.publish("iot/servo",data)
+        }else if(v?.id== R.id.watermotor_on){
+            data = "watermotor_on"
+            mymqtt?.publish("iot/servo",data)
+        }else if(v?.id== R.id.watermotor_off){
+            data = "watermotor_off"
             mymqtt?.publish("iot/servo",data)
         }
     }
