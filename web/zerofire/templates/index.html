@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-
+    <link rel="shortcut icon" href="#">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -87,9 +87,9 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/tables">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>일지 현황</span></a>
             </li>
 
             <!-- Divider -->
@@ -212,7 +212,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">소방차 물 현황</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">현황 페이지</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLinks"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -230,14 +230,11 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-100 small " style="width:100%;height:100%">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <h2>날짜</h2>
+                                    <p id="today"></p>
+                                    <h2>화재 건수</h2>
+                                    <p id="fire_count">0</p>
+                                    <a href="#">일지 쓰기</a>
                                 </div>
                             </div>
                         </div>
@@ -359,6 +356,7 @@
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/mqtt.js' %}"></script>
+    <script src="{% static 'js/tmap.js' %}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
