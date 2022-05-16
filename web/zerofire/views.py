@@ -145,3 +145,26 @@ class MyView(View):
                    'page': page}
 
         return render(request, 'tables.html', context)
+
+    @request_mapping("/write", method="get")
+    def write(self, request):
+        return render(request, 'write.html')
+
+    @request_mapping("/writeimpl", method="post")
+    def writeimpl(self, request):
+        try:
+            id = request.session["sessionid"]
+            if id != None:
+                info = Manager.objects.get(id=id)
+                fcount = request.POST["fcount"]
+                pump = request.POST["pump"]
+                content = request.POST["contents"]
+                etc = request.POST["etc"]
+                rtime = request.POST["rtime"]
+                Board(mno=info, fire_count=fcount, pump=pump, content=content, etc=etc, date_time=rtime).save()
+                return render(request, 'tables.html')
+            else:
+                pass
+        except:
+            return render(request, 'accessfail.html')
+        # return render(request, 'write.html')
