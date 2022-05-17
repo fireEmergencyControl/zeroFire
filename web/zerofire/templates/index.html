@@ -36,6 +36,7 @@
 </style>
 <body id="page-top">
 
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -43,9 +44,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">zerofire</div>
             </a>
@@ -55,7 +55,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -70,20 +70,19 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">My Page</h6>
-                        <a class="collapse-item" href="/mypage">edit</a>
-                        <a class="collapse-item" href="/register">delete</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <a class="collapse-item" href="/info">info</a>
+                         <a class="collapse-item" href="/logout">logout</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="charts.html">-->
+<!--                    <i class="fas fa-fw fa-chart-area"></i>-->
+<!--                    <span>Charts</span></a>-->
+<!--            </li>-->
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -101,11 +100,11 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="{% static 'img/undraw_rocket.svg' %}" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
+<!--            <div class="sidebar-card d-none d-lg-flex">-->
+<!--                <img class="sidebar-card-illustration mb-2" src="{% static 'img/undraw_rocket.svg' %}" alt="...">-->
+<!--                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>-->
+<!--                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>-->
+<!--            </div>-->
 
         </ul>
         <!-- End of Sidebar -->
@@ -230,11 +229,11 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <h2>날짜</h2>
+                                    <p id="clock">clock</p>
                                     <p id="today"></p>
-                                    <h2>화재 건수</h2>
-                                    <p id="fire_count">0</p>
-                                    <a href="#">일지 쓰기</a>
+                                    <h2>{{obj.name}}</h2>
+                                    <p id="fire_count">{{obj.rno.rankdata}}</p>
+                                    <a href="/write">일지 작성</a>
                                 </div>
                             </div>
                         </div>
@@ -385,6 +384,28 @@ var chart = new Chart(ctx, {
      options: {}
     });
 </script>
+<script>
+        var Target = document.getElementById("clock");
+        function clock() {
+            var time = new Date();
+
+            var month = time.getMonth();
+            var date = time.getDate();
+            var day = time.getDay();
+            var week = ['일', '월', '화', '수', '목', '금', '토'];
+
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+
+            Target.innerText =
+            `${month + 1}월 ${date}일 ${week[day]}요일 ` +
+            `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+        }
+        clock();
+        setInterval(clock, 1000); // 1초마다 실행
+    </script>
 </body>
 
 </html>
