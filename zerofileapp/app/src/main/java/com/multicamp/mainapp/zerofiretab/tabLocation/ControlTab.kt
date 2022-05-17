@@ -86,7 +86,7 @@ class ControlTab : Fragment(), View.OnClickListener {
                     Log.d("test","=, $progress ===")
                     when(seekBar?.id){
                         R.id.seekBar1 -> {
-                            mymqtt?.publish("iot/water","$progress")
+                            mymqtt?.publish("iot/water","servo:$progress")
                         }
                     }
                 }else{
@@ -121,31 +121,33 @@ class ControlTab : Fragment(), View.OnClickListener {
         var data:String=""
         if(v?.id== R.id.Forward){
             data = "forward"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","car:"+data)
         }else if(v?.id== R.id.Stop){
             data = "stop"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","car:"+data)
         }else if(v?.id== R.id.Backward){
             data = "backward"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","car:"+data)
         }else if(v?.id== R.id.LeftForward){
             data = "leftforward"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","car:"+data)
         }else if(v?.id== R.id.LeftBackward){
             data = "leftbackward"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","car:"+data)
         }else if(v?.id== R.id.RightForward){
             data = "rightforward"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","car:"+data)
         }else if(v?.id== R.id.RightBackward){
             data = "rightbackward"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","car:"+data)
         }else if(v?.id== R.id.watermotor_on){
             data = "watermotor_on"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","watermotor:"+data)
         }else if(v?.id== R.id.watermotor_off){
             data = "watermotor_off"
-            mymqtt?.publish("iot/servo",data)
+            mymqtt?.publish("iot/servo","watermotor:"+data)
+        }else if(v?.id== R.id.camerastart){
+            mymqtt?.publish("iot/camera","camera:start")
         }
     }
 }

@@ -6,25 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.multicamp.mainapp.R
-import com.skt.Tmap.TMapPoint
 import com.skt.Tmap.TMapView
 import kotlinx.android.synthetic.main.activity_map_tab.*
 import kotlinx.android.synthetic.main.activity_map_tab.view.*
 
-class MapTab : Fragment() , View.OnClickListener{
+
+/*class MapTab : Fragment() , View.OnClickListener{
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        val view=inflater.inflate(R.layout.activity_map_tab,container,false)
+        val view=inflater.inflate(R.layout.activity_map_tab, container, false)
 
-        var lltmapview:LinearLayout=view.findViewById(R.id.lltmapview)
+        val lltmapview:LinearLayout=view.findViewById(R.id.lltmapview)
 
-        var tMapView = TMapView(activity)
+        val tMapView = TMapView(activity)
 
         tMapView.setSKTMapApiKey("l7xx3e11578207e548d6ad10e40da3887e2a")
         lltmapview.addView(tMapView)
@@ -40,8 +39,8 @@ class MapTab : Fragment() , View.OnClickListener{
 
     override fun onClick(v: View) {
         when(v.id){
-            R.id.lltmapview->{
-                Log.d("test1","click1!!!!!!!!!!!!!!")
+            R.id.lltmapview -> {
+                Log.d("test1", "click1!!!!!!!!!!!!!!")
             }
         }
     }
@@ -77,3 +76,4 @@ class MapTab : Fragment() , View.OnClickListener{
     });*/
 }
 
+*/
