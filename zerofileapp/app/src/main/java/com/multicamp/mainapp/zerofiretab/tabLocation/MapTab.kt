@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.multicamp.mainapp.R
-import com.skt.Tmap.TMapView
+//import com.skt.Tmap.TMapView
 import kotlinx.android.synthetic.main.activity_map_tab.*
 import kotlinx.android.synthetic.main.activity_map_tab.view.*
 
