@@ -10,24 +10,24 @@ import com.multicamp.mainapp.zerofiretab.tabLocation.*
 import kotlinx.android.synthetic.main.tab_main.*
 
 class Tab_main : AppCompatActivity() {
-    var view1=ControlTab()
-    var view2=CurrentTab()
-    var view3=MainActivity()
+    var view0=ControlTab()
+    var view1=CurrentTab()
+    var view2=MainActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide();
         setContentView(R.layout.tab_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.layout1,view1).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.layout1,view0).commit()
 
         tabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val position=tab?.position
                 var fragment: Fragment?=null
                 when(position){
+                    0-> fragment=view0
                     1-> fragment=view1
                     2-> fragment=view2
-                    3-> fragment=view3
                 }
                 supportFragmentManager.beginTransaction().replace(R.id.layout1,fragment!!).commit()
             }

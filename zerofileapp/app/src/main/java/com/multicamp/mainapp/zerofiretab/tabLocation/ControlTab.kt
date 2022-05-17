@@ -28,9 +28,9 @@ class ControlTab : Fragment(), View.OnClickListener {
     var mwebview:WebView?=null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         Log.d("test","onCreateView!!!!!!!!!!!!!!!!!!!!!!!!!")
         val view=inflater.inflate(R.layout.activity_control_tab,container,false)
@@ -75,6 +75,7 @@ class ControlTab : Fragment(), View.OnClickListener {
         RightBackward.setOnClickListener(this)
         watermotor_on.setOnClickListener(this)
         watermotor_off.setOnClickListener(this)
+        camerastart.setOnClickListener(this)
 
         var listener = object: SeekBar.OnSeekBarChangeListener{
             // seekbar의 값이 변경되었을때
@@ -114,7 +115,7 @@ class ControlTab : Fragment(), View.OnClickListener {
         //EditText에 내용을 출력하기, 영상출력, .... 도착된 메시지안에서 온도랑 습도 데이터를 이용해서 차트그리기,
         // 모션 detact가 전달되면 Notification도 발생시키기.....
         val msg = String(message.payload)
-        }
+    }
 
 
     override fun onClick(v: View?) {
@@ -147,7 +148,9 @@ class ControlTab : Fragment(), View.OnClickListener {
             data = "watermotor_off"
             mymqtt?.publish("iot/servo","watermotor:"+data)
         }else if(v?.id== R.id.camerastart){
-            mymqtt?.publish("iot/camera","camera:start")
+            data = "start"
+            mymqtt?.publish("iot/camera","camera:"+data)
         }
     }
 }
+
