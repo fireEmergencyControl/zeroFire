@@ -149,9 +149,9 @@
 
 ### 10. 테스트 시나리오 시연
 
-<video controls width='500'>
-<source src="./docs/finalvideo.mp4">
-</video>
+
+<iframe id="video" width="50%" height="50%" src="./docs/finalvideo.mp4" frameborder="0">
+</iframe>
 
 
 #### 문서 참고기록
