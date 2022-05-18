@@ -20,9 +20,6 @@ import android.widget.VideoView
 
 class ControlTab : Fragment(), View.OnClickListener {
     val sub_topic = "iot/#"
-    val humidity_topic = "iot:humidity"
-    val temperature_topic = "iot:temperature"
-    val distance_topic = "iot:HC_SR04"
     val server_uri ="tcp://192.168.0.2:1883" //broker의 ip와 port
     var mymqtt : MyMqtt? = null
     var mwebview:WebView?=null
@@ -63,7 +60,7 @@ class ControlTab : Fragment(), View.OnClickListener {
         //블커에서 메시지가 전달되면 호출될 메소드를 넘기기
         mymqtt?.mysetCallback(::onReceived)
         //브로커연결
-        mymqtt?.connect(arrayOf<String>(sub_topic,humidity_topic,temperature_topic,distance_topic)) //여기에 토픽 추가
+        mymqtt?.connect(arrayOf<String>(sub_topic)) //여기에 토픽 추가
 
         //이벤트 연결
         Forward.setOnClickListener(this)

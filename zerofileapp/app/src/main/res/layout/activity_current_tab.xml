@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".zerofiretab.tabLocation.CurrentTab">
 
     <com.github.mikephil.charting.charts.LineChart
@@ -11,5 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_margin="5dp"
+        />
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 </LinearLayout>
