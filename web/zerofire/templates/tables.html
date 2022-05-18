@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>ZeroFire</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -386,11 +386,10 @@
                                         <tr>
                                             <th>Board No.</th>
                                             <th>Agent No.</th>
-                                            <th>Fire Count</th>
-                                            <th>Pump</th>
+
                                             <th>Content</th>
                                             <th>Etc</th>
-                                            <th>Response Time</th>
+
                                             <th>Date</th>
                                         </tr>
                                     </thead>
@@ -412,11 +411,9 @@
                                         <tr>
                                             <td>{{question.bno}}</td>
                                             <td>{{question.mno.mno}}</td>
-                                            <td>{{question.fire_count}}</td>
-                                            <td>{{question.pump}}</td>
+
                                             <td>{{question.content}}</td>
                                             <td>{{question.etc}}</td>
-                                            <td>{{question.date_time}}</td>
                                             <td>{{question.regdate}}</td>
                                         </tr>
                                     {% endfor %}
