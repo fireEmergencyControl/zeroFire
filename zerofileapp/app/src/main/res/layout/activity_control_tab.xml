@@ -135,6 +135,14 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/controllerbutton"
                 />"
+            <Button
+                android:id="@+id/camerastart"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="cam on"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/controllerbutton"
+                />"
         </LinearLayout>
         <Space
             android:layout_width="wrap_content"

@@ -10,7 +10,22 @@ class MyView(View):
 
     @request_mapping("/", method="get")
     def home(self, request):
-        return render(request, 'index.html')
+        try:
+            if request.session['sessionid'] != None:
+                return render(request, 'alreadylogin.html')
+            else:
+                pass
+        except:
+            return render(request, 'login.html')
+
+    @request_mapping("/index", method="get")
+    def index(self, request):
+        try:
+            mgr = Manager.objects.get(id=request.session["sessionid"])
+            context = {'obj':mgr}
+            return render(request, 'index.html', context)
+        except:
+            return render(request, 'accessfail.html')
 
     @request_mapping("/register", method="get")
     def register(self, request):
@@ -72,7 +87,8 @@ class MyView(View):
             mgr = Manager.objects.get(id=id)
             if mgr.pass_field == zfPass:
                 request.session["sessionid"] = mgr.id
-                return redirect('/')
+                # context = {'obj':mgr}
+                return redirect("/index")
             else:
                 return render(request, 'loginfail.html')
         except:
@@ -135,36 +151,48 @@ class MyView(View):
 
     @request_mapping("/tables", method="get")
     def tables(self, request):
-        board = Board.objects.all()
-        page = request.GET.get('page', '1')
-        question_list = Board.objects.order_by('-bno')
-        paginator = Paginator(question_list, 10)
-        page_obj = paginator.get_page(page)
-        context = {'boards': board,
-                   'question_list': page_obj,
-                   'page': page}
+        try:
+            Manager.objects.get(id=request.session["sessionid"])
+            board = Board.objects.all()
+            page = request.GET.get('page', '1')
+            question_list = Board.objects.order_by('-bno')
+            paginator = Paginator(question_list, 10)
+            page_obj = paginator.get_page(page)
+            context = {'boards': board,
+                       'question_list': page_obj,
+                       'page': page}
 
-        return render(request, 'tables.html', context)
+            return render(request, 'tables.html', context)
+        except:
+            return render(request, "accessfail.html")
 
     @request_mapping("/write", method="get")
     def write(self, request):
-        return render(request, 'write.html')
+        try:
+            Manager.objects.get(id=request.session["sessionid"])
+            return render(request, 'write.html')
+        except:
+            return render(request, "accessfail.html")
 
     @request_mapping("/writeimpl", method="post")
     def writeimpl(self, request):
-        try:
+        # try:
             id = request.session["sessionid"]
             if id != None:
                 info = Manager.objects.get(id=id)
-                fcount = request.POST["fcount"]
+                # fcount = request.POST["fcount"]
                 pump = request.POST["pump"]
                 content = request.POST["contents"]
                 etc = request.POST["etc"]
-                rtime = request.POST["rtime"]
-                Board(mno=info, fire_count=fcount, pump=pump, content=content, etc=etc, date_time=rtime).save()
-                return render(request, 'tables.html')
+                # rtime = request.POST["rtime"]
+                Board(mno=info, pump=pump, content=content, etc=etc).save()
+                return redirect('/tables')
             else:
-                pass
-        except:
-            return render(request, 'accessfail.html')
+                # pass
+        # except:
+                return render(request, 'accessfail.html')
         # return render(request, 'write.html')
+
+    @request_mapping("/test", method="get")
+    def test(self, request):
+        return render(request, 'index2.html')

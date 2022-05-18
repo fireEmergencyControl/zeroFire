@@ -26,11 +26,10 @@ class Board(models.Model):
     bno = models.AutoField(primary_key=True)
     mno = models.ForeignKey('Manager', models.DO_NOTHING, db_column='mno', blank=True, null=True)
     fire_count = models.IntegerField(blank=True, null=True)
-    pump = models.CharField(max_length=1, blank=True, null=True)
+    pump = models.CharField(max_length=10, blank=True, null=True)
     content = models.CharField(max_length=500, blank=True, null=True)
     etc = models.CharField(max_length=500, blank=True, null=True)
-    date_time = models.DateTimeField(blank=True, null=True)
-    regdate = models.DateTimeField(blank=True, null=True)
+    regdate = models.DateTimeField()
 
     class Meta:
         db_table = 'board'
