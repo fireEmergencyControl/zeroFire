@@ -1,7 +1,8 @@
 var host = "172.30.1.21";
 var port = 9001;
 var mqtt;
-
+temp=0;
+hu=0;
 function onConnect(){
     console.log("접속 완료");
     mqtt.subscribe("iot:HC_SR04");
@@ -44,14 +45,28 @@ function onMessageArrived(msg){
         }
     }
 
+
      if(mytopic[1]=="humidity"){
-     console.log("습도:"+msg.payloadString);
-    $ ( "#hu1" ) .jqxGauge ( 'setValue' , msg.payloadString);
+     result = msg.payloadString.split(",")
+     result[0] = parseInt(result[0]);
+     result[1] = parseInt(result[1]);
+     temp = result[0];
+     hu = result[1];
+     console.log("온습도:"+msg.payloadString);
+     $ ( "#hu1" ) .jqxGauge ( 'setValue' , temp);
+     $ ( "#t1" ) .jqxGauge ( 'setValue' , hu);
+     let tem = "온도 : "+String(hu);
+     let h = "습도 : "+String(temp);
+     $("#hu").text(h);
+     $("#temp").text(tem);
     }
 
      if(mytopic[1]=="temperature"){
+     temp = parseInt(msg.payladString);
      console.log("온도:"+msg.payladString);
-    $ ( "#t1" ) .jqxGauge ( 'setValue' , msg.payloadString);
+     console.log("temp:"+result[0]);
+        var ctx = document.getElementById('myChart').getContext('2d');
+
     }
 }
 //publish하는 함수 정의

@@ -27,6 +27,11 @@
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type = "text/javascript"> </script>
     <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxd96122c92d4b42678d8fe2206b8358ad"></script>
 
+    <!-- chart -->
+    <script type="text/javascript" src="{% static 'js/jqxcore.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/jqxchart.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/jqxgauge.js'%}"></script>
+<!--    <script type="text/javascript" src="{% static 'js/charts.js'%}"></script>-->
 </head>
 <style>
     #map_div {
@@ -34,6 +39,48 @@
         width: 100%;
     }
 </style>
+<script type="text/javascript">
+    var h = 30
+    var t = 24
+    var d = 10
+
+    $(function(){
+        $('#t1').jqxGauge({
+            width : 150, height : 150,
+            min : -20,        max : 110,
+            ranges : [ {
+                startValue : -20, endValue : 0,    style : { fill : '#e2e2e2'}
+            }, {
+                startValue : 0, endValue : 25,
+                style : {fill : '#00ccff'},
+            }, {
+                startValue : 26, endValue : 50,
+                style : { fill : '#4cb848'},
+            }, {
+                startValue : 51,endValue : 75,
+                style : {fill : '#fad00b'},
+            }, {
+                startValue : 76,endValue : 110,
+                style : {fill : '#e53d37'},
+            } ],
+            labels : {position : 'outside'},
+            animationDuration : 500,
+            border : {visible : false},
+            //caption : { value : "온도 : "+t+"°C"},
+            caption : { value : "온도"},
+            value : t
+        });
+
+	    $('#hu1').jqxGauge({
+	        width : 150, height : 150,     min : 0,    max : 100,
+	        border : {    visible : false},
+	        //caption : {    value : "습도 : "+h+"%"},
+	        caption : {    value : "습도"},
+	        value : h
+	    });
+    });
+
+</script>
 <body id="page-top">
 
 
@@ -61,21 +108,16 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+              <li class="nav-item">
+                <li class="nav-item">
+                <a class="nav-link collapsed" href="/info" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Info</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">My Page</h6>
-                        <a class="collapse-item" href="/info">info</a>
-                         <a class="collapse-item" href="/logout">logout</a>
-                        <div class="collapse-divider"></div>
-                    </div>
-                </div>
-            </li>
+                <a class="nav-link collapsed" href="/logout" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <span>Logout</span>
+                </a>
 
             <!-- Nav Item - Charts -->
 <!--            <li class="nav-item">-->
@@ -253,11 +295,26 @@
                                     <h6 class="m-0 font-weight-bold text-primary">지역 센서</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div >
-                                        <canvas id="myChart"></canvas>
+<!--                                    <div >-->
+<!--                                        <canvas id="myChart"></canvas>-->
+<!--                                    </div>-->
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding-left:50pt">
+                                            <div class="row">
+                                                <div class="col-md-12"><div id="hu1"></div>
+                                            </div>
+                                        </div>
+                                        <p id="hu">습도</p>
+                                    <div class="row">
+                                            <div class="col-md-12"><div id="t1">
+                                            </div>
+                                        </div>
                                     </div>
+                                    <p id="temp">온도</p>
+                                </div>
                                 </div>
                             </div>
+                        </div>
 
                             <!-- Color System -->
                             <div class="row">
@@ -352,7 +409,7 @@
         </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<!--    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>-->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/mqtt.js' %}"></script>
     <script src="{% static 'js/tmap.js' %}"></script>
@@ -362,28 +419,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-// The type of chart we want to create
-    type: 'bar',
-    // The data for our dataset
-    data: { labels: ['온도', '습도'],
-    datasets: [{
-        label: '온도와 습도',
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',],
-         borderColor: [
-            'rgb(255, 99, 132,1.5)',
-            'rgba(54, 162, 235, 1.5)',],
-         data: [20, 30]
-         }]
-     },
-     // Configuration options go here
-     options: {}
-    });
-</script>
+
 <script>
         var Target = document.getElementById("clock");
         function clock() {
