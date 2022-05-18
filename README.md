@@ -149,7 +149,9 @@
 
 ### 10. 테스트 시나리오 시연
 
-![완성스](https://user-images.githubusercontent.com/73889507/169022443-b187322c-b33f-4cd4-b7b4-f64d58551067.gif)
+<video controls width='500'>
+<source src="./docs/finalvideo.mp4">
+</video>
 
 
 #### 문서 참고기록
