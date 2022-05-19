@@ -30,7 +30,8 @@ function onMessageArrived(msg){
     }
 
     if(mytopic[1]=="fire") {
-    alert("지역에서 불이 발생했습니다.");
+//    alert("지역에서 불이 발생했습니다.");
+    alert();
     var audio = new Audio();
     audio.src = "./static/audio/sound.mp3";
     audio.volume = 0.9;
@@ -98,4 +99,11 @@ function MQTTConnect(){
     mqtt.onMessageArrived = onMessageArrived;
     mqtt.connect(options);
 }
+
+function alert(){
+    Swal.fire('화재 발생!!')
+}
+
  MQTTConnect();
+
+

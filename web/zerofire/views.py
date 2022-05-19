@@ -72,7 +72,7 @@ class MyView(View):
         except:
             if zfPass == zfPassChk:
                 mgrclass = Rankdata.objects.get(rno=zfClass)
-                Manager(name=name, id=id, email=mail, workarea=workarea, rno=mgrclass, pass_field=zfPass).save();
+                Manager(name=name, id=id, email=mail, workarea=workarea, rno=mgrclass, mgr_pass=zfPass).save();
                 request.session['sessionid'] = id;
                 return redirect('/')
             else:
@@ -85,7 +85,7 @@ class MyView(View):
 
         try:
             mgr = Manager.objects.get(id=id)
-            if mgr.pass_field == zfPass:
+            if mgr.mgr_pass == zfPass:
                 request.session["sessionid"] = mgr.id
                 # context = {'obj':mgr}
                 return redirect("/index")
@@ -130,7 +130,7 @@ class MyView(View):
                 obj.email = mail
                 obj.workarea = workarea
                 # obj.rno = mgrClass
-                obj.pass_field = zfPass
+                obj.mgr_pass = zfPass
                 obj.save()
                 return redirect('/')
             else:
@@ -196,3 +196,7 @@ class MyView(View):
     @request_mapping("/test", method="get")
     def test(self, request):
         return render(request, 'index2.html')
+
+    @request_mapping("/mqttvideo", method="get")
+    def test(self, request):
+        return render(request, 'mqttvideo.html')
