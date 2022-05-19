@@ -44,7 +44,7 @@ class ControlTab : Fragment(), View.OnClickListener {
         mwebview!!.settings.cacheMode=WebSettings.LOAD_NO_CACHE
         mwebview?.settings?.domStorageEnabled=true
         mwebview?.settings?.allowContentAccess=true
-        mwebview!!.loadUrl("http://192.168.0.2:8000/mqttvideo/")
+        mwebview!!.loadUrl("http://192.168.0.2:8000/mqttvideo")
 //        mwebview!!.loadData("<html><head><style type='text/css'>body{margin:auto auto;text-align:center;}"+
 //                "img{width:100%;} div{overflow: hidden;}"+
 //                "</style></head><body><div><img src='http://192.168.0.2:8080/mqttvideo/'></div></body></html>",

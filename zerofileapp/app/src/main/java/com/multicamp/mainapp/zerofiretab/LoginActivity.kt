@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity(){
                 val client=OkHttpClient()
                 val jsondata=jsonobj.toString()
                 val builder= Request.Builder()
-                val url="http://192.168.0.2:8000/loginandroid"
+                val url="http://127.0.0.1:8000/loginandroid"
                 val nextIntent= Intent(this,Tab_main::class.java)
                 builder.url(url)
                 builder.post(RequestBody.create(MediaType.parse("application/json"),jsondata))
