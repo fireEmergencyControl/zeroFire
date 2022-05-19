@@ -33,11 +33,11 @@ class CurrentTab : Fragment(){
             savedInstanceState: Bundle?
     ): View? {
         val view=inflater.inflate(R.layout.activity_current_tab,container,false)
+
         currentview=view.findViewById(R.id.chartview)
         currentview?.setWebViewClient(WebViewClient())
-        currentview?.setBackgroundColor(255)
-        currentview?.settings?.loadWithOverviewMode=true
-        currentview?.settings?.useWideViewPort=true
+        currentview?.settings?.loadWithOverviewMode=false
+        currentview?.settings?.useWideViewPort=false
         currentview?.settings?.builtInZoomControls=true
         currentview?.settings?.javaScriptEnabled=true
         currentview?.settings?.javaScriptCanOpenWindowsAutomatically=false
@@ -45,7 +45,7 @@ class CurrentTab : Fragment(){
         currentview!!.settings.cacheMode=WebSettings.LOAD_NO_CACHE
         currentview?.settings?.domStorageEnabled=true
         currentview?.settings?.allowContentAccess=true
-        currentview!!.loadUrl("http://192.168.0.2:8000/index")
+        currentview!!.loadUrl("192.168.0.2:8000/androidview_current");
         return view
     }
 }

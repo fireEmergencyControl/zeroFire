@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity(){
                 val client=OkHttpClient()
                 val jsondata=jsonobj.toString()
                 val builder= Request.Builder()
-                val url="http://127.0.0.1:8000/loginandroid"
+                val url="http://192.168.0.2:8000/loginandroid"
                 val nextIntent= Intent(this,Tab_main::class.java)
                 builder.url(url)
                 builder.post(RequestBody.create(MediaType.parse("application/json"),jsondata))
@@ -52,38 +52,14 @@ class LoginActivity : AppCompatActivity(){
                 }else{
                     Log.d("test","else result here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                     runOnUiThread {Toast.makeText(this,"로그인 실패!!",Toast.LENGTH_SHORT).show()}
-
                 }
-
                 Log.d("test",result!!+"result here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             }
         }
     }
-
-//    override fun onClick(v:View?){
-//        var ID=loginID.text.toString()
-//        var pass=loginPW.text.toString()
-//        var data:String=""
-//        if(v?.id==R.id.loginSubmit){
-//            data="login"
-//        }
-//        mymqtt?.publish("iot/$data",ID+":"+pass)
-//
-//        val nextIntent= Intent(this,Tab_main::class.java)
-//        startActivity(nextIntent)
-//    }
-
-
     fun onReceived(topic:String,message:MqttMessage){
         val msg=String(message.payload)
         Log.d("mymqtt","onReceived message 1111111111111")
 
     }
 }
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-
-

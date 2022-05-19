@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type = "text/javascript"> </script>
+        <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxd96122c92d4b42678d8fe2206b8358ad"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+        <script type="text/javascript" src="{% static 'js/jqxcore.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/jqxchart.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/jqxgauge.js'%}"></script>
+    </head>
+    <script type="text/javascript">
+        var h = 30
+        var t = 24
+        var d = 10
+
+        $(function(){
+            $('#t1').jqxGauge({
+                width : 150, height : 150,
+                min : -20,        max : 110,
+                ranges : [ {
+                    startValue : -20, endValue : 0,    style : { fill : '#e2e2e2'}
+                }, {
+                    startValue : 0, endValue : 25,
+                    style : {fill : '#00ccff'},
+                }, {
+                    startValue : 26, endValue : 50,
+                    style : { fill : '#4cb848'},
+                }, {
+                    startValue : 51,endValue : 75,
+                    style : {fill : '#fad00b'},
+                }, {
+                    startValue : 76,endValue : 110,
+                    style : {fill : '#e53d37'},
+                } ],
+                labels : {position : 'outside'},
+                animationDuration : 500,
+                border : {visible : false},
+                //caption : { value : "온도 : "+t+"°C"},
+                caption : { value : "온도"},
+                value : t
+            });
+
+            $('#hu1').jqxGauge({
+                width : 150, height : 150,     min : 0,    max : 100,
+                border : {    visible : false},
+                //caption : {    value : "습도 : "+h+"%"},
+                caption : {    value : "습도"},
+                value : h
+            });
+        });
+
+    </script>
+    <body style="width:180pt">
+    <script src="{% static 'js/mqtt.js' %}"></script>
+    <div class="col-md-6" style="padding-left:50pt">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="hu1">
+                </div>
+            </div>
+        </div>
+        <p id="hu">습도</p>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="t1">
+                </div>
+            </div>
+        </div>
+        <p id="temp">온도</p>
+    </div>
+
+    </body>
+</html>
