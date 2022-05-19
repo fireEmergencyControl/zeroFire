@@ -22,3 +22,13 @@ def list(request):
         datalist = Manager.objects.all()
         serializer = ManagerSerializer(datalist,many=True)
         return JsonResponse(serializer.data,safe=False, json_dumps_params={'ensure_ascii':False})
+
+def loginandroid(request):
+    if request.method == 'POST':
+        data=JSONParser().parse(request)
+        id= data["ID"]
+        obj=Manager.objects.get(id=int(id))
+        if data["PW"]==obj.pw_field:
+            return JsonResponse("ok",safe=False, json_dumps_params={'ensure_ascii':False})
+        else:
+            return JsonResponse("fail",safe=False, json_dumps_params={'ensure_ascii':False})

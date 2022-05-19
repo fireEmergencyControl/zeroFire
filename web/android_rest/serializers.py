@@ -4,4 +4,4 @@ from zerofire.models import Manager
 class ManagerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manager
-        fields = ['mno','id','workarea','rno']
+        fields = ['mno','name','email','id','pw_field','workarea','rno']
