@@ -7,7 +7,7 @@ class Manager(models.Model):
     email = models.CharField(max_length=100, blank=True)
     workarea = models.CharField(max_length=25)
     id = models.CharField(db_column='ID', max_length=20)  # Field name made lowercase.
-    pass_field = models.CharField(db_column='pass', max_length=20)  # Field renamed because it was a Python reserved word.
+    mgr_pass = models.CharField(db_column='pass', max_length=20)  # Field renamed because it was a Python reserved word.
     rno = models.ForeignKey('Rankdata', models.DO_NOTHING, db_column='rno')
 
     class Meta:

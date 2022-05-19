@@ -377,7 +377,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Tables</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -385,8 +385,8 @@
                                     <thead>
                                         <tr>
                                             <th>Board No.</th>
-                                            <th>Agent No.</th>
-
+                                            <th>Agent</th>
+                                            <th>Pump State</th>
                                             <th>Content</th>
                                             <th>Etc</th>
 
@@ -410,8 +410,8 @@
                                     {% for question in question_list %}
                                         <tr>
                                             <td>{{question.bno}}</td>
-                                            <td>{{question.mno.mno}}</td>
-
+                                            <td>{{question.mno.name}}</td>
+                                            <td>{{question.pump}}</td>
                                             <td>{{question.content}}</td>
                                             <td>{{question.etc}}</td>
                                             <td>{{question.regdate}}</td>
