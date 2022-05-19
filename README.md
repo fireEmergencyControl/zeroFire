@@ -149,9 +149,12 @@
 
 ### 10. 테스트 시나리오 시연
 
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/73889507/169212099-47b552ce-1d20-4bdf-98bc-fa3dd718b599.gif)
 
-<iframe id="video" width="50%" height="50%" src="./docs/finalvideo.mp4" frameborder="0">
-</iframe>
+![웹 전체 프로세스](https://user-images.githubusercontent.com/73889507/169212137-afc9a847-6902-4b26-bc4f-dd69560f27ad.gif)
+
+![android login](https://user-images.githubusercontent.com/73889507/169212165-6147d253-0644-4b04-b13b-28a900e38b2f.gif)
+
 
 
 #### 문서 참고기록
