@@ -198,5 +198,9 @@ class MyView(View):
         return render(request, 'index2.html')
 
     @request_mapping("/mqttvideo", method="get")
-    def test(self, request):
+    def mqttvideo(self, request):
         return render(request, 'mqttvideo.html')
+
+    @request_mapping("/androidview_current", method="get")
+    def androidview_current(self,request):
+        return render(request, 'androidview_current.html')

@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.tab_main.*
 class Tab_main : AppCompatActivity() {
     var view0=ControlTab()
     var view1=CurrentTab()
-    var view2=MainActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide();
@@ -27,7 +26,6 @@ class Tab_main : AppCompatActivity() {
                 when(position){
                     0-> fragment=view0
                     1-> fragment=view1
-                    2-> fragment=view2
                 }
                 supportFragmentManager.beginTransaction().replace(R.id.layout1,fragment!!).commit()
             }
