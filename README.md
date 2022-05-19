@@ -151,8 +151,11 @@
 
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/73889507/169212099-47b552ce-1d20-4bdf-98bc-fa3dd718b599.gif)
 
+![핸드폰 최종](https://user-images.githubusercontent.com/73889507/169215428-2bcb4b18-7741-4d4b-b9bf-9b9b67ebf942.gif)
+
 ![최종](https://user-images.githubusercontent.com/73889507/169213918-8263d08c-33ae-4a73-8458-5a5b9c3498a6.gif)
 
+최종gif 43초 실제 영상 1분 50초
 
 
 
