@@ -196,3 +196,4 @@ class MyView(View):
     @request_mapping("/test", method="get")
     def test(self, request):
         return render(request, 'index2.html')
+
